@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Http;
+﻿using Http;
 using Sartain_Studios_Common.SharedEntities;
 using SartainStudios.Token;
 using SharedModels;

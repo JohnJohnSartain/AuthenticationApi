@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageReference Include="SartainStudios.Common" Version="1.6.8" />
     <PackageReference Include="SartainStudios.Http" Version="1.0.0" />
-    <PackageReference Include="SartainStudios.Token" Version="1.0.1" />
+    <PackageReference Include="SartainStudios.Token" Version="1.0.2" />
   </ItemGroup>
 
 </Project>
