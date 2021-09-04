@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoWrapper.Core" Version="4.5.0" />
-    <PackageReference Include="SartainStudios.Common" Version="1.6.8" />
+    <PackageReference Include="SartainStudios.Common" Version="1.6.9" />
     <PackageReference Include="SartainStudios.Cryptography" Version="1.0.0" />
     <PackageReference Include="SartainStudios.Http" Version="1.0.0" />
     <PackageReference Include="SartainStudios.Log" Version="1.0.5" />
