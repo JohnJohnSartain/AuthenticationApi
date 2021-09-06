@@ -11,14 +11,23 @@ namespace Interface.Controllers;
 public class AuthenticationController : BaseController
 {
     private readonly IAuthenticationService _authentication;
+    private readonly IUserService _userService;
 
-    public AuthenticationController(IAuthenticationService authentication) => _authentication = authentication;
+    public AuthenticationController(IAuthenticationService authentication, IUserService userService)
+    {
+        _authentication = authentication;
+        _userService = userService;
+    }
 
     [HttpPost("Token")]
     public async Task<ActionResult<TokenModel>> GetAuthenticationToken(UserModel userModel)
     {
-       Log.LogInformation("GetAuthenticationToken", GetType().Name, nameof(GetAuthenticationToken), null);
+        Log.LogInformation("GetAuthenticationToken", GetType().Name, nameof(GetAuthenticationToken), null);
 
-        return await _authentication.GetAuthenticationTokenAsync(userModel);
+        var token = await _authentication.GetAuthenticationTokenAsync(userModel);
+
+        await _userService.LogUserAuthentication(await _userService.GetUserId(userModel.Username));
+
+        return token;
     }
 }

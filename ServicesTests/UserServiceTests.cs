@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Http;
 using Http.Models;
 using Moq;
@@ -238,4 +237,80 @@ public class UserServiceTests
         Assert.AreEqual(userModel.Username, result.Username);
         Assert.AreEqual(userModel.Password, result.Password);
     }
+
+    #region LogUserAuthentication
+    [Test]
+    public async Task LogUserAuthentication_GetLatestUserInformation()
+    {
+        const string userId = "someUserId";
+        const string token = "someToken";
+
+        _httpClientWrapperMock
+            .Setup(x => x.GetAsync("User", It.Is<string>(x => x.Equals(userId)), token))
+            .Returns(Task.FromResult(new AutoWrapperResponseModel<UserModel> { Result = new UserModel() }));
+
+        _httpClientWrapperMock
+            .Setup(x => x.PatchWithResultAsync("User", It.IsAny<UserModel>(), token))
+            .Returns(Task.FromResult(new AutoWrapperResponseModel<string> { Result = "success" }));
+        await _systemUnderTest.LogUserAuthentication(userId, token);
+
+        _httpClientWrapperMock.Verify(x => x.GetAsync("User", It.Is<string>(x => x.Equals(userId)), token), Times.Once);
+    }
+
+    [Test]
+    public async Task LogUserAuthentication_CallsPatchUserWithExceptedData()
+    {
+        const string userId = "someUserId";
+        const string token = "someToken";
+
+        var dateTime = DateTime.Now;
+
+        UserModel userModel = new()
+        {
+            ApplicationsUsed = null,
+            AuthenticationHistory = new DateTime[] { dateTime.AddDays(-1), dateTime },
+            Created = dateTime.AddDays(-222),
+            Email = "email",
+            FirstName = "John",
+            Id = userId,
+            Lastname = "Sartain",
+            Password = "password",
+            ProfilePhoto = "profilephoto",
+            Roles = null,
+            Username = "username"
+        };
+
+        _httpClientWrapperMock
+            .Setup(x => x.GetAsync("User", It.Is<string>(x => x.Equals(userId)), token))
+            .Returns(Task.FromResult(new AutoWrapperResponseModel<UserModel> { Result = userModel }));
+
+        _httpClientWrapperMock
+            .Setup(x => x.PatchWithResultAsync("User", It.IsAny<UserModel>(), token))
+            .Returns(Task.FromResult(new AutoWrapperResponseModel<string> { Result = "success" }));
+
+        await _systemUnderTest.LogUserAuthentication(userId, token);
+
+        _httpClientWrapperMock
+            .Verify(x =>
+                x.PatchWithResultAsync(
+                    "User",
+                    It.Is<UserModel>(x =>
+                        x.ApplicationsUsed == null
+                        && x.AuthenticationHistory.Length == 3
+                        && x.AuthenticationHistory[0] == dateTime.AddDays(-1)
+                        && x.AuthenticationHistory[1] == dateTime
+                        && x.AuthenticationHistory[1] >= dateTime
+                        && x.Created == dateTime.AddDays(-222)
+                        && x.Email == "email"
+                        && x.FirstName == "John"
+                        && x.Id == userId
+                        && x.Lastname == "Sartain"
+                        && x.Password == "password"
+                        && x.ProfilePhoto == "profilephoto"
+                        && x.Roles == null
+                        && x.Username == "username"),
+                    token),
+                Times.Once);
+    }
+    #endregion
 }
