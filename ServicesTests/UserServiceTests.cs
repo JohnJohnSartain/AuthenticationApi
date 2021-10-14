@@ -2,10 +2,10 @@ using Http;
 using Http.Models;
 using Moq;
 using NUnit.Framework;
-using Sartain_Studios_Common.SharedEntities;
+using SartainStudios.Entities.Entities;
+using SartainStudios.SharedModels.Users;
 using SartainStudios.Token;
 using Services;
-using SharedModels;
 
 namespace ServicesTests;
 
@@ -273,7 +273,7 @@ public class UserServiceTests
             Email = "email",
             FirstName = "John",
             Id = userId,
-            Lastname = "Sartain",
+            LastName = "Sartain",
             Password = "password",
             ProfilePhoto = "profilephoto",
             Roles = null,
@@ -304,7 +304,7 @@ public class UserServiceTests
                         && x.Email == "email"
                         && x.FirstName == "John"
                         && x.Id == userId
-                        && x.Lastname == "Sartain"
+                        && x.LastName == "Sartain"
                         && x.Password == "password"
                         && x.ProfilePhoto == "profilephoto"
                         && x.Roles == null

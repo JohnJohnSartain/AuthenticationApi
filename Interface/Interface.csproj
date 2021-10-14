@@ -13,12 +13,12 @@
 
   <ItemGroup>
     <PackageReference Include="AutoWrapper.Core" Version="4.5.0" />
-    <PackageReference Include="SartainStudios.Common" Version="1.6.9" />
     <PackageReference Include="SartainStudios.Cryptography" Version="1.0.0" />
     <PackageReference Include="SartainStudios.Http" Version="1.0.1" />
     <PackageReference Include="SartainStudios.Log" Version="1.0.5" />
-    <PackageReference Include="SartainStudios.Token" Version="1.0.3" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.1" />
+    <PackageReference Include="SartainStudios.SharedModels" Version="1.0.4" />
+    <PackageReference Include="SartainStudios.Token" Version="1.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
   </ItemGroup>
 
   <ItemGroup>

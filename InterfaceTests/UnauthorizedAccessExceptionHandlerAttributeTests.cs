@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
 using Moq;
 using NUnit.Framework;
-using SharedModels;
+using SartainStudios.SharedModels.Users;
 
 namespace InterfaceTests;
 

@@ -1,8 +1,8 @@
 ﻿using Interface.Controllers.Base;
 using Microsoft.AspNetCore.Mvc;
+using SartainStudios.SharedModels.Users;
 using SartainStudios.Token;
 using Services;
-using SharedModels;
 
 namespace Interface.Controllers;
 

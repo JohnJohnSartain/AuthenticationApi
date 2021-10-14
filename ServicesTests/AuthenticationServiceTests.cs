@@ -1,8 +1,8 @@
 using Moq;
 using NUnit.Framework;
+using SartainStudios.SharedModels.Users;
 using SartainStudios.Token;
 using Services;
-using SharedModels;
 
 namespace ServicesTests;
 

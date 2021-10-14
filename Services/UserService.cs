@@ -1,6 +1,6 @@
 ﻿using Http;
+using SartainStudios.SharedModels.Users;
 using SartainStudios.Token;
-using SharedModels;
 
 namespace Services;
 

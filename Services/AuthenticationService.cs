@@ -1,5 +1,5 @@
-﻿using SartainStudios.Token;
-using SharedModels;
+﻿using SartainStudios.SharedModels.Users;
+using SartainStudios.Token;
 
 namespace Services;
 

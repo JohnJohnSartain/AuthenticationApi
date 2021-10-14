@@ -7,9 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SartainStudios.Common" Version="1.6.9" />
+    <PackageReference Include="SartainStudios.Entities" Version="1.0.0" />
     <PackageReference Include="SartainStudios.Http" Version="1.0.1" />
-    <PackageReference Include="SartainStudios.Token" Version="1.0.3" />
+    <PackageReference Include="SartainStudios.SharedModels" Version="1.0.4" />
+    <PackageReference Include="SartainStudios.Token" Version="1.0.5" />
   </ItemGroup>
 
 </Project>

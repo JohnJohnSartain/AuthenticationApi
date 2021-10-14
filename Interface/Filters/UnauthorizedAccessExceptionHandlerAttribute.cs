@@ -1,7 +1,7 @@
 ﻿using AutoWrapper.Extensions;
 using AutoWrapper.Wrappers;
 using Microsoft.AspNetCore.Mvc.Filters;
-using SharedModels;
+using SartainStudios.SharedModels.Users;
 
 namespace Interface.Filters;
 
