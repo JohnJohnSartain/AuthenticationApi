@@ -22,8 +22,6 @@ public class AuthenticationController : BaseController
     [HttpPost("Token")]
     public async Task<ActionResult<TokenModel>> GetAuthenticationToken(UserModel userModel)
     {
-        Log.LogInformation("GetAuthenticationToken", GetType().Name, nameof(GetAuthenticationToken), null);
-
         var token = await _authentication.GetAuthenticationTokenAsync(userModel);
 
         await _userService.LogUserAuthentication(await _userService.GetUserId(userModel.Username));

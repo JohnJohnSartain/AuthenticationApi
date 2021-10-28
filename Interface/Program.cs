@@ -3,7 +3,6 @@ using Http;
 using Interface.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
-using SartainStudios.Log;
 using SartainStudios.Token;
 using Services;
 
@@ -30,9 +29,6 @@ builder.Services.AddSingleton(typeof(IAutoWrapperHttp<>), typeof(AutoWrapperHttp
 
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
-
-var logPath = builder.Configuration.GetSection("LogWriteLocation").Value;
-builder.Services.AddSingleton<ILog>(new Log(logPath));
 
 builder.Services.AddSingleton<IToken>(new JwtToken(AuthenticationSecret, AuthenticationExpirationInMinutes));
 #endregion
